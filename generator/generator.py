@@ -5,7 +5,6 @@ character = (
     "Hero", 
     "Recruit",
     "Invader",
-    "Commander",
     "Children",
     "Spies",
     "Commanders",
