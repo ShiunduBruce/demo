@@ -1,6 +1,5 @@
 from tkinter.constants import FALSE
 from PIL import Image, ImageTk
-import os
 
 class Figure():
 
