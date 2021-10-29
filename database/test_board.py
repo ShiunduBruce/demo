@@ -2,11 +2,11 @@
 Unit tests for the board
 """
 #We add all the files in the app directory so that they can be found
-#from sys import path
-#path.append('..\\EASYCHESS')
-#path.append('app\\views')
+from sys import path
+path.append('..\\EASYCHESS')
+path.append('app\\views')
 
-#from BoardGuiTk import BoardGuiTk
+from BoardGuiTk import BoardGuiTk
 
 class TestBoard:
 
