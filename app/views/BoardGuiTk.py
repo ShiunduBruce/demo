@@ -1,6 +1,6 @@
-import Board as Board
+import app.views.Board as Board
 import tkinter as tk
-import figures.Figure as Figure
+import app.views.figures.Figure as Figure
 
 
 from PIL import Image, ImageTk
