@@ -9,8 +9,8 @@ from database.Logger import Logger
 
 class Database:
     def __init__(self):
-        self.logger = Logger('logs/databaseLog.log')
-        self.logger.overwrite_logging('a', 'logs/databaseLog.log')
+        self.logger = Logger('databaseLog.log')
+        self.logger.overwrite_logging('a', 'databaseLog.log')
 
         try:
             self.conn = sql.connect('EasyChess.db')
