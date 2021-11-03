@@ -24,12 +24,16 @@ class TestDatabase:
         database.createTable()
 
         # Correct values passed
-        for i in range (10):
-            assert True == database.insert(random.randrange(100, 3000), random.choice([True, False]))
+        for i in range(10):
+            moves = random.randrange(100, 3000)
+            won = random.choice([True, False])
+            assert True == database.insert(moves, won)
 
         # Wrong values passed
-        for i in range (10):
-            assert False == database.insert(str(random.randrange(100, 3000)), int(random.choice([True, False])))
+        for i in range(10):
+            moves = random.randrange(100, 3000)
+            won = random.choice([True, False])
+            assert False == database.insert(str(moves), int(won))
 
         # This functionality never fails
         def testDropTable(self):
@@ -58,8 +62,10 @@ class TestDatabase:
             assert 0 == len(database.selectAll())
 
         # Test when there is one or more
-        for i in range (100):
-            database.insert(random.randrange(100,3000), random.choice([True, False]))
+        for i in range(100):
+            moves = random.randrange(100, 3000)
+            won = random.choice([True, False])
+            database.insert(moves, won)
             assert i + 1 == len(database.selectAll())
 
     # Test count of records
@@ -73,9 +79,11 @@ class TestDatabase:
             assert 0 == database.selectCountAll()
 
         # Test when there is one or more
-        for i in range (10, 100):
-            database.insert(random.randrange(100,3000), random.choice([True, False]))
-            assert i - 9 == database.selectCountAll()        
+        for i in range(10, 100):
+            moves = random.randrange(100, 3000)
+            won = random.choice([True, False])
+            database.insert(moves, won)
+            assert i - 9 == database.selectCountAll()
 
     def testSelectRecentGames(self):
         database = Database()
@@ -83,12 +91,14 @@ class TestDatabase:
         database.createTable()
 
         # Test when we want recent games and there is none
-        for i in range(1,5):
+        for i in range(1, 5):
             assert -1 == database.selectRecentGames(i)
 
         # Insert 5 records
         for _ in range(5):
-            database.insert(random.randrange(100,3000), random.choice([True, False]))
+            moves = random.randrange(100, 3000)
+            won = random.choice([True, False])
+            database.insert(moves, won)
         
         # Test when we want games and there is less than what we want
         for i in range(6, 10):
@@ -108,12 +118,12 @@ class TestDatabase:
 
         # Test when there is more records and zero wins
         for _ in range(5):
-            database.insert(random.randrange(100,3000), False)
+            database.insert(random.randrange(100, 3000), False)
             assert 0 == len(database.selectWins())
 
         # Test when there is 1 or more wins
         for i in range(5):
-            database.insert(random.randrange(100,3000), True)
+            database.insert(random.randrange(100, 3000), True)
             assert i + 1 == len(database.selectWins())
 
     def testSelectLosses(self):
@@ -126,12 +136,12 @@ class TestDatabase:
 
         # Test when there is more records and zero losses
         for _ in range(5):
-            database.insert(random.randrange(100,3000), True)
+            database.insert(random.randrange(100, 3000), True)
             assert 0 == len(database.selectLosses())
 
         # Test when there is 1 or more losses
         for i in range(5):
-            database.insert(random.randrange(100,3000), False)
+            database.insert(random.randrange(100, 3000), False)
             assert i + 1 == len(database.selectLosses())
 
     def testSelectCountWins(self):
@@ -144,12 +154,12 @@ class TestDatabase:
 
         # Test when there is more records and zero wins
         for _ in range(5):
-            database.insert(random.randrange(100,3000), False)
+            database.insert(random.randrange(100, 3000), False)
             assert 0 == database.selectCountWins()
 
         # Test when there is 1 or more wins
         for i in range(5):
-            database.insert(random.randrange(100,3000), True)
+            database.insert(random.randrange(100, 3000), True)
             assert i + 1 == database.selectCountWins()
 
     def testSelectCountLosses(self):
@@ -162,12 +172,12 @@ class TestDatabase:
 
         # Test when there is more records and zero losses
         for _ in range(5):
-            database.insert(random.randrange(100,3000), True)
+            database.insert(random.randrange(100, 3000), True)
             assert 0 == database.selectCountLosses()
 
         # Test when there is 1 or more losses
         for i in range(5):
-            database.insert(random.randrange(100,3000), False)
+            database.insert(random.randrange(100, 3000), False)
             assert i + 1 == database.selectCountLosses()
 
     def testSelectFastesWin(self):
@@ -180,7 +190,7 @@ class TestDatabase:
 
         # Just losses and no wins
         for _ in range(5):
-            database.insert(random.randrange(100,3000), False)
+            database.insert(random.randrange(100, 3000), False)
             assert None == database.selectFastesWin()
 
         # Some wins
@@ -198,7 +208,7 @@ class TestDatabase:
 
         # Just wins and no losses
         for _ in range(5):
-            database.insert(random.randrange(100,3000), True)
+            database.insert(random.randrange(100, 3000), True)
             assert None == database.selectFastestLoss()
 
         # Some losses
@@ -216,7 +226,7 @@ class TestDatabase:
 
         # Just losses and no wins
         for _ in range(5):
-            database.insert(random.randrange(100,3000), False)
+            database.insert(random.randrange(100, 3000), False)
             assert None == database.selectSlowestWin()
 
         # Some wins
@@ -234,7 +244,7 @@ class TestDatabase:
 
         # Just wins and no loss
         for _ in range(5):
-            database.insert(random.randrange(100,3000), True)
+            database.insert(random.randrange(100, 3000), True)
             assert None == database.selectSlowestLoss()
 
         # Some wins
@@ -252,7 +262,7 @@ class TestDatabase:
 
         # Just losses and no wins
         for _ in range(5):
-            database.insert(random.randrange(100,3000), False)
+            database.insert(random.randrange(100, 3000), False)
             assert -1 == database.selectTopWins(4)
 
         # Some wins
@@ -274,7 +284,7 @@ class TestDatabase:
 
         # Just wins and no losses
         for _ in range(5):
-            database.insert(random.randrange(100,3000), True)
+            database.insert(random.randrange(100, 3000), True)
             assert -1 == database.selectTopLosses(4)
 
         # Some lossess
@@ -286,4 +296,3 @@ class TestDatabase:
         # Check the return is equivalent to the requested
         for i in range(1, 10):
             assert i == len(database.selectTopLosses(i))
-        
