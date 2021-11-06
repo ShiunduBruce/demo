@@ -78,7 +78,7 @@ class BoardGuiTk(tk.Tk):
                         self.canvas.coords(id_figure, coords[1], coords[0])
                 
     def get_id(self, figure):
-        return self.pieces_canvas["%s%s.png" % (
+        return self.pieces_canvas["images//%s%s.png" % (
             figure.piece, figure.color)]
 
     def click(self, event):
@@ -160,7 +160,7 @@ class BoardGuiTk(tk.Tk):
                     x1, y1, x2, y2, outline="black", fill=color)
 
     def addpiece(self, figure, x, y):
-        filename = "%s%s.png" % (figure.piece, figure.color)
+        filename = "images//%s%s.png" % (figure.piece, figure.color)
         image = Image.open(filename)
         resize_image = image.resize(
             (self.square_size - 4, self.square_size - 4))
