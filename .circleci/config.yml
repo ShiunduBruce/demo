@@ -1,7 +1,7 @@
 # Python CircleCI 2.0 configuration file
 version: 2
 jobs:
-  .build:
+  build:
     docker:
       - image: circleci/python:3.7
 
@@ -26,15 +26,6 @@ jobs:
             flake8 --exclude=venv* --statistics --ignore=E712,E711,W293,W291,W292,E127,E128,E126
             pytest -v --cov
 
-      # Upload test results for display in Test Summary:
-      - store_test_results: 
-          path: test-results
-
-      # Upload test summary for display in Artifacts:
-      - store_artifacts:  
-          path: test-results
-          destination: tr1
-
       # Step 3: run linter and tests
       - run:
           name: build executables
@@ -42,43 +33,10 @@ jobs:
             . venv/bin/activate
             pyinstaller main.py -F
 
-        # Upload artifacts in Artifacts:
+      # Upload artifacts in Artifacts:
       - store_artifacts:  
-          path: /
+          path: /dist
 
-
-  build-linux:
-    extends: .build
-    tags:
-      - linux
-    steps:
-      - run:
-          name: build executables
-          command: |
-            . venv/bin/activate
-            pyinstaller main.py -F
-      
-
-  build-mac:
-    extends: .build
-    tags:
-      - mac
-    
-    steps:
-      - run:
-          name: build executables
-          command: |
-            . venv/bin/activate
-            pyinstaller main.py -F
-
-  build-windows:
-    extends: .build
-    tags:
-      - windows
-
-    steps:
-      - run:
-          name: build executables
-          command: |
-            . venv/bin/activate
-            pyinstaller main.py -F
+      # Upload artifacts in Artifacts:
+      - store_artifacts:  
+          path: /tests
