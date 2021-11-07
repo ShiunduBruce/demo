@@ -29,7 +29,12 @@ jobs:
           name: build executables
           command: |
             . venv/bin/activate
-            pyi-makespec main.py -F
-            pyinstaller main.spec -F
+            pyinstaller main.py -F
 
+      #Store artifacts
+      - store_artifacts:
+          path: /tmp/artifact-1
+          destination: artifact-file
 
+      - store_artifacts:
+          path: /tmp/artifacts
