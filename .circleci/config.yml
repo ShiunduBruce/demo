@@ -35,5 +35,5 @@ jobs:
 
       # Upload artifacts in Artifacts:
       - store_artifacts:  
-          path: /dist/main
+          path: /home/circleci/repo/dist
 
