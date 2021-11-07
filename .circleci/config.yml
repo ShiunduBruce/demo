@@ -14,7 +14,6 @@ jobs:
       - run:
           name: install dependencies
           command: |
-            dir
             python3 -m venv venv
             . venv/bin/activate
             pip install -r requirements.txt
@@ -22,9 +21,7 @@ jobs:
       - run:
           name: run tests
           command: |
-            dir
             . venv/bin/activate
-            mkdir test-results
             flake8 --exclude=venv* --statistics --ignore=E712,E711,W293,W291,W292,E127,E128,E126
             pytest -v --cov
 
@@ -32,21 +29,15 @@ jobs:
       - run:
           name: build executables
           command: |
-            dir
             . venv/bin/activate
-            dir
             pyinstaller main.py -F
             dir
+            cd dist
+            dir
+            cd ..
 
-      # Upload artifacts in Artifacts:
-      - store_artifacts:  
-          path: /home/circleci/repo/dist/main/bootloader.exe
-
-      # Upload artifacts in Artifacts:
-      - store_artifacts:  
-          path: /home/circleci/repo/dist/main.exe
-      
+  
         # Upload artifacts in Artifacts:
       - store_artifacts:  
-          path: /home/circleci/repo/dist
+          path: dist
 
