@@ -35,5 +35,13 @@ jobs:
 
       # Upload artifacts in Artifacts:
       - store_artifacts:  
-          path: /home/circleci/repo/dist/bootloader.exe
+          path: /home/circleci/repo/dist/main/bootloader.exe
+
+      # Upload artifacts in Artifacts:
+      - store_artifacts:  
+          path: /home/circleci/repo/dist/main.exe
+      
+        # Upload artifacts in Artifacts:
+      - store_artifacts:  
+          path: /home/circleci/repo/dist
 
