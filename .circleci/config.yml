@@ -30,4 +30,6 @@ jobs:
           command: |
             . venv/bin/activate
             pyi-makespec main.py -F
+            pyinstaller main.spec -F
+
 
