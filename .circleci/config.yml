@@ -35,8 +35,5 @@ jobs:
 
       # Upload artifacts in Artifacts:
       - store_artifacts:  
-          path: /dist
+          path: /dist/main
 
-      # Upload artifacts in Artifacts:
-      - store_artifacts:  
-          path: /tests
