@@ -56,7 +56,7 @@ jobs:
 
       - store_artifacts:
           path: /tmp/artifacts
-          
+
         # Upload artifacts in Artifacts:
-        - store_artifacts:  
-            path: versions
+      - store_artifacts:  
+          path: versions
