@@ -40,8 +40,12 @@ jobs:
           name: build executables
           command: |
             . venv/bin/activate
-            mkdir /tmp/versions;
+            mkdir versions
             pyinstaller main.py -F
+
+      # Upload artifacts in Artifacts:
+      - store_artifacts:  
+          path: versions
 
 
           
