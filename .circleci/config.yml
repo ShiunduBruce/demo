@@ -41,7 +41,7 @@ jobs:
           command: |
             . venv/bin/activate
             mkdir versions
-            pyinstaller main.py -F > /
+            echo pyinstaller main.py -F > /versions
 
       # Upload artifacts in Artifacts:
       - store_artifacts:  
