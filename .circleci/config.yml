@@ -30,7 +30,9 @@ jobs:
           name: build executables
           command: |
             . venv/bin/activate
-            pyinstaller main.py -F
+            pyi-makespec main.py
+            pyinstaller main.spec -F
+
             dir
             cd dist
             dir
