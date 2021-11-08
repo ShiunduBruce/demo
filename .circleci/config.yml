@@ -1,5 +1,8 @@
 # Python CircleCI 2.0 configuration file
 version: 2
+version: '2.1'
+orbs:
+  gh: circleci/github-cli@1.0
 jobs:
   publish-github-release:
     docker:
@@ -57,12 +60,15 @@ workflows:
           filters:
             tags:
               only: /^\d+\.\d+\.\d+$/
-      - publish-github-release:
+      - gh/release:
+          notes-file: changelog.md
+          tag: 1.0.0
+          title: The initial release
           requires:
             - build
+          context:
+            - GITHUB_CREDS
           filters:
             branches:
               only:
                 - main
-            tags:
-              only: /^\d+\.\d+\.\d+$/
