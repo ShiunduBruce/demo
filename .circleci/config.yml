@@ -36,19 +36,16 @@ jobs:
             cd ..
 
     release:
-      jobs:
-        - gh/release:
-            notes-file: changelog.md
-            tag: 1.0.0
-            title: The initial release
-            requires:
-              - node/test
-            context:
-              - GITHUB_CREDS
-            filters:
-              branches:
-                only:
-                  - main
+      - gh/release:
+          notes-file: changelog.md
+          tag: 1.0.0
+          title: The initial release
+          context:
+            - GITHUB_CREDS
+          filters:
+            branches:
+              only:
+                - main
   
       # Upload artifacts in Artifacts:
       - store_artifacts:  
