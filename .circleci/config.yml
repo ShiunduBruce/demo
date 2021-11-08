@@ -1,6 +1,5 @@
 # Python CircleCI 2.0 configuration file
 version: 2
-version: '2.1'
 orbs:
   gh: circleci/github-cli@1.0
 jobs:
