@@ -1,8 +1,5 @@
 # Python CircleCI 2.0 configuration file
 version: 2
-orbs:
-  node: circleci/node@4.3
-  gh: circleci/github-cli@1.0
 jobs:
   publish-github-release:
     docker:
@@ -13,9 +10,9 @@ jobs:
       - run:
           name: "Publish Release on GitHub"
           command: |
+            VERSION=$(my-binary --version)
             ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ./dist/
 
-  gh: circleci/github-cli@1.0
 
   build:
     docker:
@@ -62,15 +59,12 @@ workflows:
           filters:
             tags:
               only: /^\d+\.\d+\.\d+$/
-      - gh/release:
-          notes-file: changelog.md
-          tag: 1.0.0
-          title: The initial release
+      - publish-github-release:
           requires:
             - build
-          context:
-            - GITHUB_CREDS
           filters:
             branches:
               only:
                 - main
+            tags:
+              only: /^\d+\.\d+\.\d+$/
