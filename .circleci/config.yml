@@ -35,7 +35,6 @@ jobs:
             dir
             cd ..
 
-    release:
       - gh/release:
           notes-file: changelog.md
           tag: 1.0.0
