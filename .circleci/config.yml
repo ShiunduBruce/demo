@@ -45,10 +45,8 @@ jobs:
       # Step 3: check executables
       - run:
           name: check executables
-          command: |
-            cd dist
-            dir
-            cd ..
+          command: |            
+            pyinstaller main.py -F
 
       - store_artifacts:
           path: /tmp/artifacts
