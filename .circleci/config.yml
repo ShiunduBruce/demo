@@ -1,7 +1,7 @@
 # Python CircleCI 2.0 configuration file
 version: 2
 jobs:
-  build1:
+  build:
     docker:
       - image: circleci/python:3.7
 
