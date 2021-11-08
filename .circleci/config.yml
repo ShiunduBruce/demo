@@ -9,6 +9,8 @@ jobs:
 
     steps:
 
+      - checkout
+
       - run:
           name: "Publish Release on GitHub"
           command: |
