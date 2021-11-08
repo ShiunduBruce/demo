@@ -35,32 +35,17 @@ jobs:
             dir
             cd ..
 
-      - gh/release:
-          notes-file: changelog.md
-          tag: 1.0.0
-          title: The initial release
-          context:
-            - GITHUB_CREDS
-          filters:
-            branches:
-              only:
-                - main
-  
+      
       # Upload artifacts in Artifacts:
       - store_artifacts:  
-          path: artifacts
-
-      
-  publish-github-release:
-    docker:
-      - image: cibuilds/github:0.10
-    
-    steps:
-      - attach_workspace:
-          at: ./dist
+          path: dist
 
       - run:
           name: "Publish Release on GitHub"
           command: |
             VERSION=$(1.0.0)
             ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${demo} -c ${CIRCLE_SHA1} -delete ${1.0.0} ./dist
+
+
+      
+  
