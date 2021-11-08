@@ -38,12 +38,6 @@ jobs:
       - store_artifacts:  
           path: artifacts
 
-    docker:
-      - image: cibuilds/github:0.10
-
-    working_directory: ~/repo
-
-    steps:
       - run:
           name: "Publish Release on GitHub"
           command: |
