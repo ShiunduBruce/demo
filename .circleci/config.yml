@@ -1,12 +1,10 @@
 # Python CircleCI 2.0 configuration file
 version: 2
-orbs:
-  gh: circleci/github-cli@1.0
 jobs:
   build:
     docker:
       - image: circleci/python:3.7
-
+      - image: cibuilds/github:0.10
     working_directory: ~/repo
 
     steps:
