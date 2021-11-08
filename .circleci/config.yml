@@ -46,6 +46,7 @@ jobs:
       - run:
           name: check executables
           command: |            
+            . venv/bin/activate
             pyinstaller main.py -F
 
       - store_artifacts:
