@@ -41,13 +41,9 @@ jobs:
       
   publish-github-release:
     docker:
-      - image: circleci/python:3.7
-    working_directory: ~/repo
+      - image: cibuilds/github:0.10
     
     steps:
-      # Step 1: obtain repo from GitHub
-      - checkout
-
       - attach_workspace:
           at: ./dist
 
@@ -55,4 +51,4 @@ jobs:
           name: "Publish Release on GitHub"
           command: |
             VERSION=$(1.0.0)
-            ghr -t ${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} -u ${ShiunduBruce} -r ${demo} -c ${CIRCLE_SHA1} -delete ${1.0.0} ./dist
+            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${demo} -c ${CIRCLE_SHA1} -delete ${1.0.0} ./dist
