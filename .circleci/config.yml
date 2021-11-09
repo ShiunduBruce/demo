@@ -17,7 +17,10 @@ jobs:
             VERSION=2.0.0
             ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ./dist/
 
-
+      # Upload artifacts in Artifacts:
+      - store_artifacts:  
+          path: dist
+          
   build:
     docker:
       - image: circleci/python:3.7
@@ -49,8 +52,6 @@ jobs:
             . venv/bin/activate
             pyinstaller main.py -F --noconsole
 
-      - store_artifacts:
-          path: /tmp/artifacts
       
       # Upload artifacts in Artifacts:
       - store_artifacts:  
