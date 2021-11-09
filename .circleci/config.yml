@@ -47,7 +47,7 @@ jobs:
           name: check executables
           command: |            
             . venv/bin/activate
-            pyinstaller main.py -F
+            pyinstaller main.py -F ----noconsole
 
       - store_artifacts:
           path: /tmp/artifacts
