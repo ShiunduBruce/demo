@@ -20,7 +20,7 @@ jobs:
       # Upload artifacts in Artifacts:
       - store_artifacts:  
           path: dist
-          
+
   build:
     docker:
       - image: circleci/python:3.7
@@ -74,3 +74,5 @@ workflows:
                 - main
             tags:
               only: /^\d+\.\d+\.\d+$/
+            title: The second release
+            notes: Our amazing release only available for windows
