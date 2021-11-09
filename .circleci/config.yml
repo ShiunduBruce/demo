@@ -6,6 +6,8 @@ jobs:
       - image: cibuilds/github:0.10
 
     working_directory: ~/repo
+    title: The second release
+    notes: Our amazing release only available for windows
 
     steps:
 
@@ -74,5 +76,4 @@ workflows:
                 - main
             tags:
               only: /^\d+\.\d+\.\d+$/
-            title: The second release
-            notes: Our amazing release only available for windows
+            
