@@ -4,9 +4,13 @@
 # path.append('..\\app\\views')
 
 from app.views.BoardGuiTk import BoardGuiTk
+from images.ImageHelper import ImageHelper
+
 # from BoardGuiTk import BoardGuiTk
 
 if __name__ == "__main__":
+
+    imageHelper = ImageHelper()
 
     boardGUI = BoardGuiTk()
 
