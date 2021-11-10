@@ -19,6 +19,13 @@ jobs:
             VERSION=4.0.0
             ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ./dist/
 
+      # Step 3: check executables
+      - run:
+          name: check executables
+          command: |            
+            . venv/bin/activate
+            pyinstaller EasyChess.py -F --noconsole
+            
       # Upload artifacts in Artifacts:
       - store_artifacts:  
           path: dist
