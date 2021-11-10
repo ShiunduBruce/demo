@@ -53,7 +53,7 @@ jobs:
           name: check executables
           command: |            
             . venv/bin/activate
-            pyinstaller main.py -F --noconsole
+            pyinstaller EasyChess.py -F --noconsole
 
       
       # Upload artifacts in Artifacts:
