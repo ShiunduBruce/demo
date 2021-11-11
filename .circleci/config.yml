@@ -63,24 +63,11 @@ jobs:
       - deploy:
           name: Deploy
           command: |
-            if [ $CIRCLE_BRANCH == $SOURCE_BRANCH ]; then
-              git config --global user.email $GH_EMAIL
-              git config --global user.name $GH_NAME
+            git add -a
+            git commit -m "Automated deployment to GitHub Pages: ${CIRCLE_SHA1}" --allow-empty
 
-              git clone $CIRCLE_REPOSITORY_URL 
-
-              cd EasyChess
-              git checkout $TARGET_BRANCH
-              git rm -rf .
-
-              pip install pyinstaller
-              pyinstaller main.py -F
-
-              git add -a
-              git commit -m "Automated deployment to GitHub Pages: ${CIRCLE_SHA1}" --allow-empty
-
-              git push origin $TARGET_BRANCH
-            fi
+            git push origin $TARGET_BRANCH
+            
 
 workflows:
   version: 2
