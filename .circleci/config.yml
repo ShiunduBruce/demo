@@ -55,7 +55,8 @@ jobs:
           name: check executables
           command: |
             pip install pyinstaller            
-            pyinstaller EasyChess.py -F --noconsole
+            pyinstaller EasyChess.py -F
+            dir
 
       
       # Upload artifacts in Artifacts:
