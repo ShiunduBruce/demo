@@ -24,14 +24,9 @@ jobs:
           path: dist
 
   build:
-    branches:
-        ignore:
-          - gh-pages
+
     docker:
       - image: circleci/python:3.7
-    environment:
-      - SOURCE_BRANCH: main
-      - TARGET_BRANCH: gh-pages
     working_directory: ~/repo
 
     steps:
