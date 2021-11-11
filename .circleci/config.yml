@@ -12,7 +12,7 @@ jobs:
     working_directory: ~/repo
     title: The second release
     notes: Our amazing release only available for windows
-    executor: win/default # executor type
+    executor: macos # executor type
 
     steps:
 
