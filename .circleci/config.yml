@@ -49,10 +49,11 @@ jobs:
             
 
       # Step 3: check executables
+      #  . venv/bin/activate
       - run:
           name: check executables
-          command: |            
-            . venv/bin/activate
+          command: |    
+            pip install pyinstaller       
             pyinstaller EasyChess.py -F --noconsole
 
       
@@ -63,7 +64,9 @@ jobs:
       - deploy:
           name: Deploy
           command: |
-            git add -a
+            dir
+            git status
+            git add .
             git commit -m "Automated deployment to GitHub Pages: ${CIRCLE_SHA1}" --allow-empty
 
             git push origin $TARGET_BRANCH
