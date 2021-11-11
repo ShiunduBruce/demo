@@ -1,5 +1,9 @@
 # Python CircleCI 2.0 configuration file
 version: 2
+
+orbs:
+  win: circleci/windows@2.2.0
+
 jobs:
   publish-github-release:
     docker:
@@ -8,6 +12,7 @@ jobs:
     working_directory: ~/repo
     title: The second release
     notes: Our amazing release only available for windows
+    executor: win/default # executor type
 
     steps:
 
