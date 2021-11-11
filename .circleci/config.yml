@@ -67,8 +67,18 @@ jobs:
             dir
             git config --global user.email $GH_EMAIL
             git config --global user.name $GH_NAME
-            cp -a build /
-            git add /dist
+            
+            git clone $CIRCLE_REPOSITORY_URL out
+
+            cd out
+            git checkout $TARGET_BRANCH || git checkout --orphan $TARGET_BRANCH
+            git rm -rf .
+            cd ..
+            cp -a dist/. out/.
+
+            cd out
+            git add .
+            git status
             git status
             git commit -m "Automated deployment to GitHub Pages: ${CIRCLE_SHA1}" --allow-empty
 
