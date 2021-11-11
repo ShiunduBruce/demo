@@ -1,9 +1,5 @@
 # Python CircleCI 2.0 configuration file
 version: 2
-
-orbs:
-  win: circleci/windows@2.2.0
-
 jobs:
   publish-github-release:
     docker:
@@ -12,19 +8,11 @@ jobs:
     working_directory: ~/repo
     title: The second release
     notes: Our amazing release only available for windows
-    executor: macos # executor type
 
     steps:
 
       - checkout
 
-      # Step 3: check executables
-      - run:
-          name: check executables
-          command: |     
-            pip install pyinstaller   
-            pyinstaller EasyChess.py -F --noconsole
-            
       # Upload artifacts in Artifacts:
       - store_artifacts:  
           path: dist
@@ -35,7 +23,7 @@ jobs:
             VERSION=4.0.0
             ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ./dist/
 
- 
+
 
   build:
     docker:
@@ -46,7 +34,33 @@ jobs:
     steps:
       # Step 1: obtain repo from GitHub
       - checkout
+      # Step 2: create virtual env and install dependencies
+      - run:
+          name: install dependencies
+          command: |
+            python3 -m venv venv
+            . venv/bin/activate
+            pip install -r requirements.txt
+      # Step 3: run linter and tests
+      - run:
+          name: run tests
+          command: |
+            . venv/bin/activate
+            flake8 --exclude=venv* --statistics --ignore=E712,E711,W293,W291,W292,E127,E128,E126,E501
+            pytest -v --cov
+            
+
+      # Step 3: check executables
+      - run:
+          name: check executables
+          command: |
+            pip install pyinstaller            
+            pyinstaller EasyChess.py -F --noconsole
+
       
+      # Upload artifacts in Artifacts:
+      - store_artifacts:  
+          path: dist
 
 workflows:
   version: 2
