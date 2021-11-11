@@ -8,7 +8,7 @@ jobs:
     working_directory: ~/repo
 
     title: The second release
-    notes: Our amazing release only available for windows
+    description: Our amazing release only available for windows
 
     steps:
 
