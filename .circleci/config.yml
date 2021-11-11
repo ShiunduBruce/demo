@@ -6,6 +6,7 @@ jobs:
       - image: cibuilds/github:0.10
 
     working_directory: ~/repo
+
     title: The second release
     notes: Our amazing release only available for windows
 
@@ -17,11 +18,7 @@ jobs:
           name: "Publish Release on GitHub"
           command: |
             VERSION=4.0.0
-            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ./dist/
-
-      # Upload artifacts in Artifacts:
-      - store_artifacts:  
-          path: dist
+            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ./dist
 
   build:
 
@@ -53,37 +50,13 @@ jobs:
       - run:
           name: check executables
           command: |    
-            pip install pyinstaller       
+            . venv/bin/activate
             pyinstaller EasyChess.py -F --noconsole
 
       
       # Upload artifacts in Artifacts:
       - store_artifacts:  
           path: dist
-
-      - deploy:
-          name: Deploy
-          command: |
-            dir
-            git config --global user.email $GH_EMAIL
-            git config --global user.name $GH_NAME
-            
-            git clone $CIRCLE_REPOSITORY_URL out
-
-            cd out
-            git checkout $TARGET_BRANCH || git checkout --orphan $TARGET_BRANCH
-            git rm -rf .
-            cd ..
-            cp -a dist/. out/.
-
-            cd out
-            git add .
-            git status
-            git status
-            git commit -m "Automated deployment to GitHub Pages: ${CIRCLE_SHA1}" --allow-empty
-
-            git push origin $TARGET_BRANCH
-            
 
 workflows:
   version: 2
