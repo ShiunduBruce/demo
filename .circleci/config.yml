@@ -67,7 +67,7 @@ jobs:
             dir
             git config --global user.email $GH_EMAIL
             git config --global user.name $GH_NAME
-            cp -a dist /.
+            cp -a dist /
             git add /dist
             git status
             git commit -m "Automated deployment to GitHub Pages: ${CIRCLE_SHA1}" --allow-empty
