@@ -13,12 +13,6 @@ jobs:
 
       - checkout
 
-      - run:
-          name: "Publish Release on GitHub"
-          command: |
-            VERSION=4.0.0
-            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ./dist/
-
       # Step 3: check executables
       - run:
           name: check executables
@@ -29,6 +23,14 @@ jobs:
       # Upload artifacts in Artifacts:
       - store_artifacts:  
           path: dist
+
+      - run:
+          name: "Publish Release on GitHub"
+          command: |
+            VERSION=4.0.0
+            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ./dist/
+
+ 
 
   build:
     docker:
