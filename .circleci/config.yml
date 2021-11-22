@@ -7,9 +7,6 @@ jobs:
 
     working_directory: ~/repo
 
-    title: The second release
-    description: Our amazing release only available for windows
-
     steps:
 
       - checkout
@@ -44,16 +41,16 @@ jobs:
             pytest -v --cov
             
 
-      # Step 3: check executables
-      #  . venv/bin/activate
+      # Step 4: check executables
       - run:
           name: check executables
           command: |    
             . venv/bin/activate
             pyinstaller EasyChess.py -F
+            pyinstaller EasyChess.py -F --noconsole
 
       
-      # Upload artifacts in Artifacts:
+      # Step 4: Upload artifacts in dist:
       - store_artifacts:  
           path: dist
 
