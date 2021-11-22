@@ -3,15 +3,29 @@ version: 2
 jobs:
   publish-github-release:
     docker:
-      - image: cibuilds/github:0.10
       - image: circleci/python:3.7
+      - image: cibuilds/github:0.10
 
     working_directory: ~/repo
 
     steps:
 
+    # Step 1: check executables
       - checkout
 
+    # Step 2: check executables
+      - run:
+          name: check executables
+          command: |    
+            . venv/bin/activate
+            pyinstaller EasyChess.py -F --noconsole
+
+      
+      # Step 3: Upload artifacts in dist:
+      - store_artifacts:  
+          path: dist
+
+    # Step 4: publish githb releases
       - run:
           name: "Publish Release on GitHub"
           command: |
@@ -40,20 +54,7 @@ jobs:
             . venv/bin/activate
             flake8 --exclude=venv* --statistics --ignore=E712,E711,W293,W291,W292,E127,E128,E126,E501
             pytest -v --cov
-            
-
-      # Step 4: check executables
-      - run:
-          name: check executables
-          command: |    
-            . venv/bin/activate
-            pyinstaller EasyChess.py -F
-            pyinstaller EasyChess.py -F --noconsole
-
-      
-      # Step 4: Upload artifacts in dist:
-      - store_artifacts:  
-          path: dist
+          
 
 workflows:
   version: 2
