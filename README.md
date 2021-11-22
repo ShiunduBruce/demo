@@ -10,7 +10,6 @@ EasyChess is a single player game on a 4 by 4 board against a trained bot. The b
 - a pawn
   <img src="https://github.com/parimsuka/EasyChess/blob/development/public/images/icons/pawnblue.png" width="100" title="hover text">
 - a knight
-  <img src="https://github.com/parimsuka/EasyChess/blob/development/public/images/icons/knightblue.png" width="100" title="hover text">
 
         
 The aim of the game is to be the first to align the pieces in vertical, horizontal or diagonal row. Once atleast three pieces are placed per player, they may move a piece, capture a piece or place the remaining piece. Captured pieces are returned to their player and may be replayed on any open square
