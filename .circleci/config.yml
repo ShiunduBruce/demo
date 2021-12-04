@@ -13,7 +13,6 @@ jobs:
           name: install dependencies
           command: |
             sudo apt-get install python3-venv
-            ln -sfn /usr/lib/x86_64-linux-gnu/sasl2/ /usr/lib64/sasl2 
 
             python3 -m venv venv
             . venv/bin/activate
