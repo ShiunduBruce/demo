@@ -4,6 +4,8 @@ orbs:
 jobs:
   build:
 
+    executor: github-release/default
+    
     steps:
       # Step 1: obtain repo from GitHub
       - checkout
