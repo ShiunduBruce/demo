@@ -12,6 +12,6 @@ jobs:
             echo dummy > ./artifacts/file
       - github-release/create:
           tag: vX.Y.Z
-          title: Version vX.Y.Z
+          title: Version vX.Y.b
           description: This release is version vX.Y.Z .
           file-path: ./artifacts/file
