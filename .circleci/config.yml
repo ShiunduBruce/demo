@@ -6,12 +6,22 @@ jobs:
     description: Create dummy file and publish a new release tagged `vX.Y.Z`.
     executor: github-release/default
     steps:
+      # Step 1: obtain repo from GitHub
+      - checkout
+      # Step 2: create virtual env and install dependencies
+      - run:
+          name: install dependencies
+          command: |
+            python3 -m venv venv
+            . venv/bin/activate
+            pip install -r requirements.txt
+      # Step 3: run linter and tests
       - run:
           command: |
             mkdir artifacts
             echo dummy > ./artifacts/file
       - github-release/create:
-          tag: vX.Y.b
-          title: Version vX.Y.b
+          tag: vX.Y.d
+          title: Version vX.Y.d
           description: This release is version vX.Y.Z .
           file-path: ./artifacts/file
