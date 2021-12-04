@@ -29,8 +29,11 @@ jobs:
           name: check executables
           command: |    
             . venv/bin/activate
-            pyinstaller EasyChess.py -F
             pyinstaller EasyChess.py -F --noconsole
+        
+      # Step 4: Upload artifacts in dist:
+      - store_artifacts:  
+          path: dist
 
       - github-release/create:
           tag: vX.Y.p
