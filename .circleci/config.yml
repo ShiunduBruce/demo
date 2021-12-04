@@ -18,11 +18,22 @@ jobs:
             pip install -r requirements.txt
       # Step 3: run linter and tests
       - run:
+          name: run tests
           command: |
-            mkdir artifacts
-            echo dummy > ./artifacts/file
+            . venv/bin/activate
+            flake8 --exclude=venv* --statistics --ignore=E712,E711,W293,W291,W292,E127,E128,E126,E501
+            pytest -v --cov
+
+      # Step 4: check executables
+      - run:
+          name: check executables
+          command: |    
+            . venv/bin/activate
+            pyinstaller EasyChess.py -F
+            pyinstaller EasyChess.py -F --noconsole
+
       - github-release/create:
-          tag: vX.Y.d
-          title: Version vX.Y.d
-          description: This release is version vX.Y.Z .
-          file-path: ./artifacts/file
+          tag: vX.Y.p
+          title: Version vX.Y.p
+          description: This release is version vX.Y.p
+          file-path: ./dist
