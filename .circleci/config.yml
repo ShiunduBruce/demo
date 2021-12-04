@@ -11,7 +11,7 @@ jobs:
             mkdir artifacts
             echo dummy > ./artifacts/file
       - github-release/create:
-          tag: vX.Y.Z
+          tag: vX.Y.b
           title: Version vX.Y.b
           description: This release is version vX.Y.Z .
           file-path: ./artifacts/file
