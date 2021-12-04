@@ -15,15 +15,10 @@ jobs:
           command: |
             sudo apt-get install python3-dev
             sudo apt-get install python3-venv
-            python3 --version
-            which python
+            which python3
 
-            include /usr/local/lib
-            sudo /sbin/ldconfig -v
             python3 -m venv venv
             . venv/bin/activate
-            include /usr/local/lib
-            sudo /sbin/ldconfig -v
             sudo apt-get install libpython3.9-dev
             pip3 install -r requirements.txt
 
