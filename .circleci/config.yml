@@ -39,7 +39,10 @@ jobs:
           path: dist
 
       - github-release/create:
-          tag: vX.Y.p
-          title: Version vX.Y.p
+          branches:
+              only:
+                - main
+          tag: vX.Y.n
+          title: Version vX.Y.n
           description: This release is version vX.Y.p
           file-path: ./dist
