@@ -12,6 +12,16 @@ jobs:
       - checkout
 
       - run:
+          name: check executables
+          command: |    
+            sudo apt-get install python3-dev
+            sudo apt-get install python3-venv
+            
+            . venv/bin/activate
+            pyinstaller EasyChess.py -F
+            pyinstaller EasyChess.py -F --noconsole
+
+      - run:
           name: "Publish Release on GitHub"
           command: |
             ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ./dist
@@ -39,16 +49,6 @@ jobs:
             . venv/bin/activate
             flake8 --exclude=venv* --statistics --ignore=E712,E711,W293,W291,W292,E127,E128,E126,E501
             pytest -v --cov
-            
-
-      # Step 4: check executables
-      - run:
-          name: check executables
-          command: |    
-            . venv/bin/activate
-            pyinstaller EasyChess.py -F
-            pyinstaller EasyChess.py -F --noconsole
-
       
       # Step 4: Upload artifacts in dist:
       - store_artifacts:  
