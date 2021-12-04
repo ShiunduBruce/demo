@@ -5,7 +5,6 @@ orbs:
 jobs:
   publish-github-release:
     executor: github-release/default
-
     steps:
       # Step 1: obtain repo from GitHub
       - checkout
@@ -22,6 +21,8 @@ jobs:
             pip install -r requirements.txt
 
       # Step 3: Produce linux executables
+      # Windows executables are locally produced
+      # As of this script, circleci doesent have a stable windows image
       - run:
           name: produce executables
           command: |                
@@ -33,6 +34,7 @@ jobs:
           path: dist
           
       # Step 5: Publish the release
+      # The above orbs is used
       - github-release/create:
           tag: ${VERSION}
           title: EasyChess v${VERSION}
