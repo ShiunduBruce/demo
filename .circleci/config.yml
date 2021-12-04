@@ -42,3 +42,13 @@ jobs:
           title: Version vX.Y.p
           description: This release is version vX.Y.p
           file-path: ./dist
+
+workflows:
+  version: 2
+  main:
+    jobs:
+      - build:
+          filters:
+            tags:
+              only: /^\d+\.\d+\.\d+$/
+      
