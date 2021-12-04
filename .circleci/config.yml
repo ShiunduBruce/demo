@@ -34,9 +34,9 @@ jobs:
           
       # Step 5: Publish the release
       - github-release/create:
-          tag: vX.Y.3
-          title: Version vX.Y.3
-          description: This release is version vX.Y.p
+          tag: ${VERSION}
+          title: EasyChess v${VERSION}
+          description: Stable executables for both windows and linux environment and source code
           file-path: ./dist
   build:
 
