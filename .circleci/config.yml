@@ -18,8 +18,6 @@ jobs:
             python3 --version
             export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib64
 
-      #      python3 -m venv venv
-      #      . venv/bin/activate
             sudo apt-get install libpython3-dev
             pip3 install -r requirements.txt
 
@@ -29,7 +27,6 @@ jobs:
       - run:
           name: produce executables
           command: |                
-#            . venv/bin/activate
             pyinstaller EasyChess.py -F --noconsole
       
       # Step 4: Upload artifacts in dist:
