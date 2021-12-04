@@ -16,9 +16,16 @@ jobs:
             sudo apt-get install python3-dev
             sudo apt-get install python3-venv
             python3 --version
+            which python
 
-            sudo apt-get install libpython3-dev
-            pip install -r requirements.txt
+            include /usr/local/lib
+            sudo /sbin/ldconfig -v
+            python3 -m venv venv
+            . venv/bin/activate
+            include /usr/local/lib
+            sudo /sbin/ldconfig -v
+            sudo apt-get install libpython3.9-dev
+            pip3 install -r requirements.txt
 
       # Step 3: Produce linux executables
       # Windows executables are locally produced
@@ -26,6 +33,7 @@ jobs:
       - run:
           name: produce executables
           command: |                
+            . venv/bin/activate
             pyinstaller EasyChess.py -F --noconsole
       
       # Step 4: Upload artifacts in dist:
