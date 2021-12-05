@@ -13,8 +13,8 @@ jobs:
       - run:
           name: install dependencies
           command: |
-            sudo apt-get install python3-dev
-            sudo apt-get install python3-venv
+            sudo apt-get install python3.6-dev
+            sudo apt-get install python3.6-venv
 
             python3 -m venv venv
             . venv/bin/activate
@@ -27,7 +27,7 @@ jobs:
           name: produce executables
           command: |                
             . venv/bin/activate
-            pyinstaller EasyChess.py -F --ignore glibc
+            pyinstaller EasyChess.py -F --noconsole
       
       # Step 4: Upload artifacts in dist:
       - store_artifacts:  
