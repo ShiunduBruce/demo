@@ -48,7 +48,6 @@ jobs:
           title: EasyChess v3.2.6.9
           description: Stable executables for both windows and linux environment and source code
           file-path: ./build
-          file-path: ./dist
 
   build:
 
