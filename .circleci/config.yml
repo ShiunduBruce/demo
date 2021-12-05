@@ -31,6 +31,7 @@ jobs:
             python setup.py build
             cd build
             dir
+            cd ..
       # Step 4: Upload artifacts in dist:
       - store_artifacts:  
           path: build
@@ -38,8 +39,8 @@ jobs:
       # Step 5: Publish the release
       # The above orbs is used
       - github-release/create:
-          tag: v2.2.2.7
-          title: EasyChess v2.2.2.7
+          tag: v2.2.2.8
+          title: EasyChess v2.2.2.8
           description: Stable executables for both windows and linux environment and source code
           file-path: ./build
   build:
