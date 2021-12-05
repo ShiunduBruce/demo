@@ -4,8 +4,11 @@ orbs:
   github-release: h-matsuo/github-release@0.1.1
 jobs:
   publish-github-release:
-    executor: github-release/default
+    
+    # executor: github-release/default
     steps:
+      docker:
+        - image:cimg/base:stable-20.04
       # Step 1: obtain repo from GitHub
       - checkout
 
@@ -33,7 +36,7 @@ jobs:
           name: Produce executables 
           command: |                
             . venv/bin/activate
-            tar cvf ./build/EasyChess.tar ./build
+            tar cvf ./build/EasyChess.tar ./build/
             dir
             cp ./dist/EasyChess.exe ./build/EasyChess.exe
 
@@ -44,8 +47,8 @@ jobs:
       # Step 5: Publish the release
       # The above orbs is used
       - github-release/create:
-          tag: v3.4.9.9
-          title: EasyChess v3.4.9.9
+          tag: v3.4.1.9
+          title: EasyChess v3.4.1.9
           description: Stable executables for both windows and linux environment and source code
           file-path: ./build
 
