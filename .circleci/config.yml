@@ -6,7 +6,7 @@ jobs:
   publish-github-release:
     docker:
         - image:cimg/base:stable-20.04
-    # executor: github-release/default
+    executor: github-release/default
     steps:
       # Step 1: obtain repo from GitHub
       - checkout
