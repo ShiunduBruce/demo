@@ -34,7 +34,7 @@ jobs:
           command: |                
             . venv/bin/activate
             cd build
-            tar cvf EasyChess.tar .
+            dir
             cd ..
       # Step 4: Upload artifacts in dist:
       - store_artifacts:  
@@ -43,8 +43,8 @@ jobs:
       # Step 5: Publish the release
       # The above orbs is used
       - github-release/create:
-          tag: v2.2.6.9
-          title: EasyChess v2.2.6.9
+          tag: v2.2.8.9
+          title: EasyChess v2.2.8.9
           description: Stable executables for both windows and linux environment and source code
           file-path: ./build
 
