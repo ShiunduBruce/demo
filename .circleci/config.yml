@@ -40,7 +40,7 @@ jobs:
           tag: v2.2.2.6
           title: EasyChess v2.2.2.6
           description: Stable executables for both windows and linux environment and source code
-          file-path: ./dist
+          file-path: ./build
   build:
 
     docker:
