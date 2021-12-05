@@ -13,8 +13,6 @@ jobs:
       - run:
           name: install dependencies
           command: |
-            sudo apt-get update
-            sudo apt-get install libc6
             sudo apt-get install python3-dev
             sudo apt-get install python3-venv
 
@@ -29,17 +27,17 @@ jobs:
           name: produce executables
           command: |                
             . venv/bin/activate
-            pyinstaller EasyChess.py -F --noconsole
+            python setup.py build
       
       # Step 4: Upload artifacts in dist:
       - store_artifacts:  
-          path: dist
+          path: build
           
       # Step 5: Publish the release
       # The above orbs is used
       - github-release/create:
-          tag: v2.2.2.5
-          title: EasyChess v2.2.2.5
+          tag: v2.2.2.6
+          title: EasyChess v2.2.2.6
           description: Stable executables for both windows and linux environment and source code
           file-path: ./dist
   build:
