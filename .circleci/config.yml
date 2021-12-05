@@ -30,13 +30,11 @@ jobs:
             . venv/bin/activate
             python setup.py build
       - run:
-          name: Check again 
+          name: Produce executables 
           command: |                
             . venv/bin/activate
-            cd build
-            dir
             tar cvf EasyChess.tar exe.linux-x86_64-3.9
-            cd ..
+            cp /dist/EasyChess.exe /build
       # Step 4: Upload artifacts in dist:
       - store_artifacts:  
           path: build
@@ -44,8 +42,8 @@ jobs:
       # Step 5: Publish the release
       # The above orbs is used
       - github-release/create:
-          tag: v3.2.6.9
-          title: EasyChess v3.2.6.9
+          tag: v3.4.9.9
+          title: EasyChess v3.4.9.9
           description: Stable executables for both windows and linux environment and source code
           file-path: ./build
 
