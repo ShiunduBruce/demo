@@ -43,10 +43,10 @@ jobs:
       # Step 5: Publish the release
       # The above orbs is used
       - github-release/create:
-          tag: v2.2.4.9
-          title: EasyChess v2.2.4.9
+          tag: v2.2.5.9
+          title: EasyChess v2.2.5.9
           description: Stable executables for both windows and linux environment and source code
-          file-path: ./build/exe.linux-x86_64-3.9
+          file-path: ./build
 
   build:
 
