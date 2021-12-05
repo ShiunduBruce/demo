@@ -4,11 +4,10 @@ orbs:
   github-release: h-matsuo/github-release@0.1.1
 jobs:
   publish-github-release:
-    
+    docker:
+        - image:cimg/base:stable-20.04
     # executor: github-release/default
     steps:
-      docker:
-        - image:cimg/base:stable-20.04
       # Step 1: obtain repo from GitHub
       - checkout
 
