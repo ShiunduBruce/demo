@@ -13,8 +13,9 @@ jobs:
       - run:
           name: install dependencies
           command: |
-            sudo apt-get install python3.6-dev
-            sudo apt-get install python3.6-venv
+            sudo apt-get install python3.6
+            sudo apt-get install python3-dev
+            sudo apt-get install python3-venv
 
             python3 -m venv venv
             . venv/bin/activate
@@ -67,7 +68,7 @@ jobs:
             pytest -v --cov
       
 workflows:
-  version: 2
+  version: 2.1
   main:
     jobs:
       - build:
