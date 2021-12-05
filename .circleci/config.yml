@@ -33,7 +33,7 @@ jobs:
           name: Produce executables 
           command: |                
             . venv/bin/activate
-            tar ./build/cvf EasyChess.tar ./build/exe.linux-x86_64-3.9
+            tar cvf ./build/EasyChess.tar ./build/exe.linux-x86_64-3.9
             cp ./dist/EasyChess.exe ./build/EasyChess.exe
 
       # Step 4: Upload artifacts in dist:
